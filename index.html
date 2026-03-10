@@ -1,0 +1,2214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Frontier | The Community for AI-First Business Leaders and Professionals</title>
+<meta name="description" content="Join a connected ecosystem accelerating AI adoption through peer learning, working groups, and collaboration. Free to join.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #F4F7FB;
+    --ink2: #FFFFFF;
+    --ink3: #EDF1F7;
+    --ink4: #E1E7F0;
+    --border: rgba(15,25,50,0.09);
+    --border2: rgba(15,25,50,0.15);
+    --cyan: #0088CC;
+    --cyan-dim: rgba(0,136,204,0.1);
+    --cyan-glow: rgba(0,136,204,0.2);
+    --amber: #D4820A;
+    --amber-dim: rgba(212,130,10,0.1);
+    --green: #00965E;
+    --green-dim: rgba(0,150,94,0.1);
+    --red: #D93050;
+    --white: #0F1928;
+    --white70: rgba(15,25,40,0.65);
+    --white40: rgba(15,25,40,0.4);
+    --white15: rgba(15,25,40,0.1);
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.18;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(244,247,251,0.88);
+    border-bottom: 1px solid var(--border);
+    transition: padding 0.3s;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-logo-icon {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--cyan), var(--green));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--white70);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--cyan);
+    color: #FFFFFF;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    padding: 160px 48px 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(160deg, #F4F7FB 0%, #EEF3FA 50%, #F4F7FB 100%);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(0,136,204,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cyan-dim);
+    border: 1px solid rgba(0,212,255,0.3);
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+  .hero-badge-dot {
+    width: 6px; height: 6px;
+    background: var(--cyan);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 4.5vw, 62px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: #0077BB;
+  }
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--white70);
+    max-width: 480px;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--cyan);
+    color: #FFFFFF;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0,136,204,0.25);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1.5px solid var(--border2);
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-block;
+  }
+  .btn-secondary:hover {
+    border-color: var(--cyan);
+    background: var(--cyan-dim);
+  }
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 48px;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+  }
+  .hero-stat-num {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--white);
+    display: block;
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: var(--white40);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ─── INTELLIGENCE FEED WIDGET ─── */
+  .intel-widget {
+    background: var(--ink2);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(15,25,50,0.14), 0 0 0 1px rgba(15,25,50,0.1);
+  }
+  .intel-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--ink3);
+  }
+  .intel-title {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .intel-live {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--green);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .intel-live-dot {
+    width: 6px; height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+  .intel-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    background: var(--ink2);
+  }
+  .intel-tab {
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--white40);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .intel-tab.active {
+    color: var(--cyan);
+    border-bottom-color: var(--cyan);
+  }
+  .intel-body { padding: 20px; }
+
+  /* Vendor Trust Chart */
+  .vendor-chart { }
+  .vendor-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .vendor-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white70);
+    width: 80px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .vendor-bar-wrap {
+    flex: 1;
+    height: 8px;
+    background: var(--ink4);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .vendor-bar {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--cyan), var(--green));
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .vendor-score {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--cyan);
+    width: 32px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .vendor-delta {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .vendor-delta.up { background: var(--green-dim); color: var(--green); }
+  .vendor-delta.dn { background: rgba(255,75,110,0.12); color: var(--red); }
+
+  /* Activity Feed */
+  .feed-items { }
+  .feed-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(8px);
+    animation: feedIn 0.4s forwards;
+  }
+  .feed-item:last-child { border-bottom: none; }
+  @keyframes feedIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .feed-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .feed-icon.cyan { background: var(--cyan-dim); }
+  .feed-icon.amber { background: var(--amber-dim); }
+  .feed-icon.green { background: var(--green-dim); }
+  .feed-text { font-size: 12px; color: var(--white70); line-height: 1.5; }
+  .feed-text strong { color: var(--white); font-weight: 600; }
+  .feed-time { font-size: 10px; color: var(--white40); margin-top: 2px; display: block; }
+
+  /* Mini Line Chart */
+  .mini-chart-wrap {
+    position: relative;
+    height: 80px;
+    margin-bottom: 12px;
+  }
+  .chart-label {
+    font-size: 10px;
+    color: var(--white40);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .adoption-industries {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .industry-pill {
+    background: var(--ink3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .industry-name { font-size: 11px; color: var(--white70); font-weight: 500; }
+  .industry-pct { font-size: 13px; font-weight: 800; font-family: var(--font-display); }
+  .industry-pct.high { color: var(--cyan); }
+  .industry-pct.med { color: var(--amber); }
+  .industry-pct.low { color: var(--white40); }
+
+  /* ticker */
+  .ticker-wrap {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    background: var(--ink4);
+    padding: 8px 0;
+  }
+  .ticker-inner {
+    display: flex;
+    gap: 48px;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-inner:hover { animation-play-state: paused; }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-item {
+    font-size: 11px;
+    color: var(--white40);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .ticker-item .tag {
+    color: var(--cyan);
+    font-weight: 700;
+  }
+  .ticker-sep { color: var(--border2); }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 100px 48px; }
+
+  .section-label {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 16px;
+  }
+  .section-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3vw, 44px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .section-sub {
+    font-size: 17px;
+    color: var(--white70);
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 600px;
+  }
+
+  /* ─── WHAT IS AI FRONTIER ─── */
+  .what-is {
+    background: var(--ink4);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .what-text p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--white70);
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+  .what-text p strong { color: var(--white); font-weight: 600; }
+  .what-visual {
+    position: relative;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* ── NEW NETWORK DIAGRAM ── */
+  .nw { position: relative; width: 340px; height: 320px; }
+  .nw svg.nw-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .nw-node {
+    position: absolute;
+    display: flex; flex-direction: column; align-items: center; gap: 7px;
+    transform: translate(-50%, -50%);
+    animation: nwPop .5s ease both;
+  }
+  @keyframes nwPop {
+    from { opacity:0; transform:translate(-50%,-50%) scale(.5); }
+    to   { opacity:1; transform:translate(-50%,-50%) scale(1); }
+  }
+  .nw-dot {
+    border-radius: 50%;
+    position: relative;
+  }
+  .nw-dot::after {
+    content:''; position:absolute; border-radius:50%;
+    border: 1.5px solid currentColor; inset: -5px;
+    opacity: .28; animation: nwPulse 2.8s ease-in-out infinite;
+  }
+  @keyframes nwPulse {
+    0%,100% { transform:scale(1); opacity:.28; }
+    50%      { transform:scale(1.35); opacity:0; }
+  }
+  .nw-label {
+    font-size: 11px; font-weight: 600; letter-spacing: .03em;
+    color: rgba(15,25,50,0.5); white-space: nowrap;
+  }
+  .nw-node.nc .nw-dot {
+    width:64px; height:64px;
+    background: radial-gradient(circle at 35% 35%, #0099DD, #0070A0);
+    box-shadow: 0 0 24px rgba(0,136,204,.4), 0 0 50px rgba(0,136,204,.15);
+    color: #00D4FF;
+  }
+  .nw-node.nc .nw-dot::after { inset:-8px; animation-duration:2s; opacity:.5; }
+  .nw-node.nc .nw-label { color:#0F1928; font-size:12.5px; font-weight:700; text-shadow: none; }
+  .nw-node.n-cyan  .nw-dot { width:38px; height:38px; background:rgba(0,212,255,.12);  border:2px solid #00D4FF; color:#00D4FF; }
+  .nw-node.n-green .nw-dot { width:38px; height:38px; background:rgba(0,224,154,.12);  border:2px solid #00E09A; color:#00E09A; }
+  .nw-node.n-amber .nw-dot { width:38px; height:38px; background:rgba(245,166,35,.12); border:2px solid #F5A623; color:#F5A623; }
+  .nw-node.n-dim   .nw-dot { width:30px; height:30px; background:rgba(100,110,130,.1); border:2px solid #505868; color:#505868; }
+  .nw-node.n-tiny  .nw-dot { width:18px; height:18px; background:rgba(100,110,130,.07);border:2px solid #363e52; color:#363e52; }
+
+  /* ─── WHO IS THIS FOR ─── */
+  .who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 56px;
+    position: relative;
+  }
+  /* Convergence bridge between cards */
+  .who-grid::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px; height: 56px;
+    background: radial-gradient(circle, rgba(0,136,204,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    border: 1px solid rgba(0,136,204,0.18);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .who-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+  }
+  .who-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+  }
+  .who-card.leaders:hover  { border-color: rgba(0,136,204,0.4); box-shadow: 0 24px 60px rgba(0,136,204,0.12); }
+  .who-card.professionals:hover { border-color: rgba(212,130,10,0.4); box-shadow: 0 24px 60px rgba(212,130,10,0.12); }
+
+  /* Illustrated header area */
+  .who-card-visual {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .who-card.leaders .who-card-visual    { background: linear-gradient(135deg, #EBF7FF 0%, #D6F0FA 60%, #CCE9F5 100%); }
+  .who-card.professionals .who-card-visual { background: linear-gradient(135deg, #FFF8EC 0%, #FFF0D3 60%, #FFECC4 100%); }
+
+  /* Glow blob behind SVG */
+  .who-visual-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    pointer-events: none;
+  }
+  .who-card.leaders .who-visual-glow    { width:220px;height:220px; background:rgba(0,136,204,0.12);  top:-60px; right:-40px; }
+  .who-card.professionals .who-visual-glow { width:220px;height:220px; background:rgba(212,130,10,0.12); top:-60px; left:-40px; }
+
+  .who-card-visual svg { width:100%; height:100%; }
+
+  /* Body */
+  .who-card-body { padding: 32px 36px 36px; }
+
+  .who-tag {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 5px 12px;
+    border-radius: 100px; border: 1px solid;
+    margin-bottom: 18px;
+  }
+  .who-tag-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .who-card.leaders    .who-tag { color:var(--cyan);  border-color:rgba(0,212,255,0.3);  background:rgba(0,212,255,0.07); }
+  .who-card.leaders    .who-tag-dot { background:var(--cyan); box-shadow:0 0 5px rgba(0,136,204,0.5); animation: pulse 2s infinite; }
+  .who-card.professionals .who-tag { color:var(--amber); border-color:rgba(245,166,35,0.3); background:rgba(245,166,35,0.07); }
+  .who-card.professionals .who-tag-dot { background:var(--amber); box-shadow:0 0 5px rgba(212,130,10,0.5); animation: pulse 2s infinite; }
+
+  .who-card h3 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    margin-bottom: 12px;
+    line-height: 1.15;
+  }
+  .who-card.leaders    h3 { color: var(--white); }
+  .who-card.professionals h3 { color: var(--white); }
+
+  .who-card p {
+    font-size: 15px;
+    color: var(--white70);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+
+  /* Who card traits list */
+  .who-traits {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .who-traits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--white70);
+    line-height: 1.5;
+  }
+  .who-traits li::before {
+    content: '';
+    min-width: 16px; height: 16px;
+    border-radius: 50%;
+    margin-top: 2px;
+    flex-shrink: 0;
+    background-size: 10px 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .who-card.leaders .who-traits li::before {
+    background-color: rgba(0,212,255,0.15);
+    border: 1px solid rgba(0,212,255,0.4);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 5l2.5 2.5 3.5-4' stroke='%230088CC' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+  .who-card.professionals .who-traits li::before {
+    background-color: rgba(245,166,35,0.15);
+    border: 1px solid rgba(245,166,35,0.4);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 5l2.5 2.5 3.5-4' stroke='%23C07010' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  /* ─── BENEFITS ─── */
+  .benefits-tabs {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 56px;
+    width: fit-content;
+  }
+  .benefits-tab {
+    padding: 12px 32px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    color: var(--white40);
+    background: transparent;
+    border: none;
+    letter-spacing: 0.03em;
+  }
+  .benefits-tab.active {
+    background: var(--cyan);
+    color: var(--ink);
+  }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .benefit-item {
+    background: var(--ink3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.3s;
+  }
+  .benefit-item:hover { border-color: var(--border2); }
+  .benefit-num {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--border2);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .benefit-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+  .benefit-desc {
+    font-size: 14px;
+    color: var(--white40);
+    line-height: 1.6;
+  }
+
+  /* ─── INTELLIGENCE FEED FULL SECTION ─── */
+  .intelligence-section {
+    background: var(--ink3);
+    position: relative;
+    overflow: hidden;
+  }
+  .intelligence-section::before {
+    content: '';
+    position: absolute;
+    bottom: -300px; left: -300px;
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(0,150,94,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .intelligence-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 64px;
+  }
+  .intel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(0,150,94,0.1), rgba(0,136,204,0.1));
+    border: 1px solid rgba(0,150,94,0.3);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  .intel-full-dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .intel-card {
+    background: var(--ink2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .intel-card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .intel-card-title {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+  .intel-card-body { padding: 20px; }
+
+  .intel-full-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* Heatmap */
+  .heatmap-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  .heatmap-cell {
+    height: 28px;
+    border-radius: 4px;
+    transition: transform 0.2s;
+    cursor: default;
+  }
+  .heatmap-cell:hover { transform: scale(1.15); }
+  .heatmap-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  .heatmap-label { font-size: 9px; color: var(--white40); }
+
+  /* Radar / Network Graph */
+  .radar-svg { width: 100%; height: 200px; }
+
+  /* ─── ECOSYSTEM ─── */
+  .ecosystem-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+  .eco-card {
+    background: var(--ink2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .eco-card:hover { transform: translateY(-6px); border-color: var(--border2); }
+  .eco-number {
+    font-family: var(--font-display);
+    font-size: 80px;
+    font-weight: 800;
+    color: rgba(15,25,50,0.05);
+    position: absolute;
+    top: -10px; right: 12px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .eco-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--ink4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .eco-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+  .eco-desc { font-size: 13px; color: var(--white40); line-height: 1.6; }
+
+  /* ─── NUMBERS ─── */
+  .numbers-section {
+    background: var(--ink3);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+  }
+  .number-item {
+    padding: 40px 24px;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .number-item:last-child { border-right: none; }
+  .number-val {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .number-label {
+    font-size: 12px;
+    color: var(--white40);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ─── HOW IT WORKS ─── */
+  .how-steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 56px;
+    align-items: center;
+  }
+  .step {
+    display: flex;
+    gap: 24px;
+    padding: 32px;
+    background: var(--ink2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: border-color 0.3s;
+  }
+  .step:hover { border-color: var(--cyan); box-shadow: 0 8px 28px rgba(0,136,204,0.1); }
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--cyan);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .step-content h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+  .step-content p { font-size: 14px; color: var(--white40); line-height: 1.7; }
+  .how-visual {
+    background: var(--ink3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    height: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+  .testi-card {
+    background: var(--ink3);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+  }
+  .testi-quote {
+    font-size: 32px;
+    line-height: 1;
+    color: var(--cyan);
+    font-family: Georgia, serif;
+    margin-bottom: 16px;
+  }
+  .testi-text {
+    font-size: 14px;
+    color: var(--white70);
+    line-height: 1.75;
+    flex: 1;
+    font-weight: 300;
+    font-style: italic;
+  }
+  .testi-text strong { color: var(--cyan); font-style: normal; font-weight: 600; }
+  .testi-meta {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .testi-role {
+    font-size: 12px;
+    color: var(--white40);
+    font-style: normal;
+  }
+  .testi-tag {
+    display: inline-block;
+    background: var(--cyan-dim);
+    color: var(--cyan);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  /* ─── CTA FOOTER ─── */
+  .cta-section {
+    text-align: center;
+    padding: 120px 48px;
+    background: var(--ink3);
+    border-top: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,136,204,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-section h2 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-section p {
+    font-size: 17px;
+    color: var(--white70);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .cta-note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--white40);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 48px;
+    border-top: 1px solid var(--border);
+    background: var(--ink3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .footer-copy { font-size: 13px; color: var(--white40); }
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .footer-links a {
+    color: var(--white40);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--white70); }
+
+  /* ─── SOURCE TAG ─── */
+  .source-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 10px;
+    color: var(--white40);
+    line-height: 1.5;
+  }
+  .source-tag::before {
+    content: '⊙';
+    color: var(--cyan);
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+  .source-tag strong { color: var(--white); font-weight: 600; }
+  .source-tag a { color: var(--cyan); text-decoration: none; opacity: 0.85; }
+  .source-tag a:hover { opacity: 1; }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; gap: 48px; }
+    section { padding: 60px 24px; }
+    .what-grid, .who-grid, .how-steps { grid-template-columns: 1fr; }
+    .benefits-grid { grid-template-columns: 1fr 1fr; }
+    .ecosystem-grid { grid-template-columns: 1fr 1fr; }
+    .numbers-grid { grid-template-columns: repeat(3,1fr); }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .intel-full-dashboard { grid-template-columns: 1fr; }
+    .intel-full-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 24px; text-align: center; }
+    .hero-stats { flex-wrap: wrap; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">◈</div>
+    AI Frontier
+  </a>
+  <ul class="nav-links">
+    <li><a href="#what">About</a></li>
+    <li><a href="#intelligence">Intelligence</a></li>
+    <li><a href="#ecosystem">Ecosystem</a></li>
+    <li><a href="#how">How It Works</a></li>
+  </ul>
+  <a href="#join" class="nav-cta">Join Free →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      The AI-First Community for Leaders Who Build, Not Just Talk
+    </div>
+    <h1>Stop Reading<br>About AI. <em>Start<br>Doing It —</em><br>Together.</h1>
+    <p class="hero-sub">AI Frontier is a community-powered market ecosystem where business leaders and professionals work together to accelerate the learning and adoption of the most advanced AI technologies.</p>
+    <div class="hero-ctas">
+      <a href="#join" class="btn-primary">Join the Community</a>
+      <a href="#intelligence" class="btn-secondary">View Intelligence Feed</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="hero-stat-num" data-count="5000">0</span>
+        <span class="hero-stat-label">Members</span>
+      </div>
+      <div>
+        <span class="hero-stat-num" data-count="60">0</span>
+        <span class="hero-stat-label">Working Groups</span>
+      </div>
+      <div>
+        <span class="hero-stat-num" data-count="120">0</span>
+        <span class="hero-stat-label">AI Partners</span>
+      </div>
+      <div>
+        <span class="hero-stat-num" data-count="25">0</span>
+        <span class="hero-stat-label">Countries</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO INTELLIGENCE WIDGET -->
+  <div class="intel-widget" id="intel-widget">
+    <div class="intel-header">
+      <div class="intel-title">
+        ◈ AI Frontier Intelligence
+      </div>
+      <div class="intel-live">
+        <span class="intel-live-dot"></span> LIVE FEED
+      </div>
+    </div>
+    <div class="intel-tabs">
+      <div class="intel-tab active" onclick="switchTab(this,'vendors')">Vendor Trust</div>
+      <div class="intel-tab" onclick="switchTab(this,'activity')">Activity</div>
+      <div class="intel-tab" onclick="switchTab(this,'adoption')">Adoption</div>
+    </div>
+
+    <!-- VENDORS TAB -->
+    <div class="intel-body" id="tab-vendors">
+      <div style="margin-bottom:14px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:11px;color:var(--white40);">TRUST SCORE — VETTED BY WORKING GROUPS</span>
+        <span style="font-size:10px;color:var(--green);font-weight:700;">↑ Updated 4h ago</span>
+      </div>
+      <div class="vendor-chart" id="vendor-chart">
+        <div class="vendor-row">
+          <span class="vendor-name">OpenAI</span>
+          <div class="vendor-bar-wrap"><div class="vendor-bar" style="--w:91%"></div></div>
+          <span class="vendor-score">91</span>
+          <span class="vendor-delta up">+3</span>
+        </div>
+        <div class="vendor-row">
+          <span class="vendor-name">Anthropic</span>
+          <div class="vendor-bar-wrap"><div class="vendor-bar" style="--w:88%"></div></div>
+          <span class="vendor-score">88</span>
+          <span class="vendor-delta up">+5</span>
+        </div>
+        <div class="vendor-row">
+          <span class="vendor-name">Glean</span>
+          <div class="vendor-bar-wrap"><div class="vendor-bar" style="--w:82%"></div></div>
+          <span class="vendor-score">82</span>
+          <span class="vendor-delta up">+8</span>
+        </div>
+        <div class="vendor-row">
+          <span class="vendor-name">Writer AI</span>
+          <div class="vendor-bar-wrap"><div class="vendor-bar" style="--w:79%"></div></div>
+          <span class="vendor-score">79</span>
+          <span class="vendor-delta up">+2</span>
+        </div>
+        <div class="vendor-row">
+          <span class="vendor-name">Cohere</span>
+          <div class="vendor-bar-wrap"><div class="vendor-bar" style="--w:74%"></div></div>
+          <span class="vendor-score">74</span>
+          <span class="vendor-delta dn">−1</span>
+        </div>
+        <div class="vendor-row">
+          <span class="vendor-name">Synthesia</span>
+          <div class="vendor-bar-wrap"><div class="vendor-bar" style="--w:68%"></div></div>
+          <span class="vendor-score">68</span>
+          <span class="vendor-delta up">+11</span>
+        </div>
+      </div>
+      <div class="source-tag"><strong>Source:</strong> AI Frontier Working Group Evaluations — 847 peer assessments across 18 industries, Q1 2025. Scores are composite trust ratings: deployment success, support quality, ROI reported by members. <strong>Not sponsored.</strong> Full methodology available to members.</div>
+    </div>
+
+    <!-- ACTIVITY TAB -->
+    <div class="intel-body" id="tab-activity" style="display:none;">
+      <div class="feed-items" id="activity-feed"></div>
+    </div>
+
+    <!-- ADOPTION TAB -->
+    <div class="intel-body" id="tab-adoption" style="display:none;">
+      <div class="chart-label">AI ADOPTION INDEX — BY INDUSTRY (Q1 2025)</div>
+      <svg class="network-svg" viewBox="0 0 340 120" id="adoption-chart" style="height:120px; margin-bottom:12px;">
+        <defs>
+          <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#00D4FF"/>
+            <stop offset="100%" stop-color="#00E09A"/>
+          </linearGradient>
+        </defs>
+        <!-- Grid lines -->
+        <line x1="0" y1="20" x2="340" y2="20" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <line x1="0" y1="60" x2="340" y2="60" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <line x1="0" y1="100" x2="340" y2="100" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <!-- Line chart -->
+        <polyline id="adoptionLine" points="" fill="none" stroke="url(#lineGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline id="adoptionArea" points="" fill="url(#areaGrad)" opacity="0.15"/>
+        <defs>
+          <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#00D4FF"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="adoption-industries">
+        <div class="industry-pill"><span class="industry-name">FinTech</span><span class="industry-pct high">89%</span></div>
+        <div class="industry-pill"><span class="industry-name">Healthcare</span><span class="industry-pct high">76%</span></div>
+        <div class="industry-pill"><span class="industry-name">Retail</span><span class="industry-pct med">64%</span></div>
+        <div class="industry-pill"><span class="industry-name">Legal</span><span class="industry-pct med">51%</span></div>
+        <div class="industry-pill"><span class="industry-name">Education</span><span class="industry-pct med">48%</span></div>
+        <div class="industry-pill"><span class="industry-name">Real Estate</span><span class="industry-pct low">32%</span></div>
+      </div>
+      <div class="source-tag"><strong>Source:</strong> AI Frontier Member Survey, Q1 2025 — 2,341 self-reported responses. "Adopting AI" = at least one AI tool in active production use.</div>
+    </div>
+
+    <!-- TICKER -->
+    <div class="ticker-wrap">
+      <div class="ticker-inner" id="ticker">
+        <span class="ticker-item"><span class="tag">HEALTHCARE</span> 3 companies deployed AI triage · avg 34% efficiency gain <span class="ticker-sep">·</span></span>
+        <span class="ticker-item"><span class="tag">FINTECH</span> RAG implementations trending · 12 new evaluations this week <span class="ticker-sep">·</span></span>
+        <span class="ticker-item"><span class="tag">RETAIL</span> Personalization AI outperforming rule-based by 2.4x <span class="ticker-sep">·</span></span>
+        <span class="ticker-item"><span class="tag">LEGAL</span> Contract review AI: 91% accuracy in field tests <span class="ticker-sep">·</span></span>
+        <span class="ticker-item"><span class="tag">MARKETPLACE</span> 7 new vendor listings · 3 deals in progress <span class="ticker-sep">·</span></span>
+        <span class="ticker-item"><span class="tag">HEALTHCARE</span> 3 companies deployed AI triage · avg 34% efficiency gain <span class="ticker-sep">·</span></span>
+        <span class="ticker-item"><span class="tag">FINTECH</span> RAG implementations trending · 12 new evaluations this week <span class="ticker-sep">·</span></span>
+        <span class="ticker-item"><span class="tag">RETAIL</span> Personalization AI outperforming rule-based by 2.4x <span class="ticker-sep">·</span></span>
+        <span class="ticker-item"><span class="tag">LEGAL</span> Contract review AI: 91% accuracy in field tests <span class="ticker-sep">·</span></span>
+        <span class="ticker-item"><span class="tag">MARKETPLACE</span> 7 new vendor listings · 3 deals in progress <span class="ticker-sep">·</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS AI FRONTIER -->
+<section class="what-is" id="what">
+  <div class="what-grid">
+    <div class="what-text fade-up">
+      <div class="section-label">What Is AI Frontier</div>
+      <h2 class="section-h2">Where AI Theory Becomes Business Reality</h2>
+      <p>AI Frontier is where <strong>business leaders transforming their organizations with AI</strong> and professionals building their careers around it come together.</p>
+      <p>They share what's working, what's failing, and what they've learned — in <strong>confidential working groups</strong>, facilitated by expert moderators.</p>
+      <p>The result: you learn in weeks what would take months alone, make connections that turn into real partnerships, and avoid the expensive mistakes that come from navigating AI adoption in isolation.</p>
+      <p style="color:var(--cyan); font-weight:500;">We welcome members at every stage — from AI-curious to AI-native.</p>
+    </div>
+    <!-- NETWORK DIAGRAM -->
+    <div class="what-visual fade-up">
+      <div class="nw">
+        <svg class="nw-lines" viewBox="0 0 340 320">
+          <defs>
+            <linearGradient id="lc" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00D4FF" stop-opacity=".55"/>
+              <stop offset="100%" stop-color="#00D4FF" stop-opacity=".04"/>
+            </linearGradient>
+            <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00E09A" stop-opacity=".55"/>
+              <stop offset="100%" stop-color="#00E09A" stop-opacity=".04"/>
+            </linearGradient>
+            <linearGradient id="la" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F5A623" stop-opacity=".55"/>
+              <stop offset="100%" stop-color="#F5A623" stop-opacity=".04"/>
+            </linearGradient>
+          </defs>
+          <!-- Center → FinTech (cyan) -->
+          <line x1="178" y1="162" x2="174" y2="62"  stroke="url(#lc)" stroke-width="1.5"/>
+          <!-- Center → Healthcare (green) -->
+          <line x1="178" y1="162" x2="286" y2="74"  stroke="url(#lg)" stroke-width="1.5"/>
+          <!-- Center → Legal (amber) -->
+          <line x1="178" y1="162" x2="68"  y2="186" stroke="url(#la)" stroke-width="1.5"/>
+          <!-- Center → Retail (amber) -->
+          <line x1="178" y1="162" x2="290" y2="196" stroke="url(#la)" stroke-width="1.5"/>
+          <!-- Center → EdTech (dim dashed) -->
+          <line x1="178" y1="162" x2="110" y2="268" stroke="#505868" stroke-width="1" stroke-dasharray="4 4" stroke-opacity=".5"/>
+          <!-- Center → Manufacturing (dim dashed) -->
+          <line x1="178" y1="162" x2="248" y2="266" stroke="#505868" stroke-width="1" stroke-dasharray="4 4" stroke-opacity=".5"/>
+          <!-- Ambient dim lines -->
+          <line x1="178" y1="162" x2="32"  y2="96"  stroke="#363e52" stroke-width="1" stroke-opacity=".35" stroke-dasharray="3 7"/>
+          <line x1="178" y1="162" x2="316" y2="126" stroke="#363e52" stroke-width="1" stroke-opacity=".35" stroke-dasharray="3 7"/>
+        </svg>
+        <!-- CENTER -->
+        <div class="nw-node nc"      style="left:178px;top:162px;animation-delay:0s">    <div class="nw-dot"></div><div class="nw-label">AI Frontier</div></div>
+        <!-- FINTECH -->
+        <div class="nw-node n-cyan"  style="left:174px;top:52px;animation-delay:.1s">    <div class="nw-dot"></div><div class="nw-label">FinTech</div></div>
+        <!-- HEALTHCARE -->
+        <div class="nw-node n-green" style="left:286px;top:70px;animation-delay:.15s">   <div class="nw-dot"></div><div class="nw-label">Healthcare</div></div>
+        <!-- LEGAL -->
+        <div class="nw-node n-amber" style="left:68px;top:186px;animation-delay:.2s">    <div class="nw-dot"></div><div class="nw-label">Legal</div></div>
+        <!-- RETAIL -->
+        <div class="nw-node n-amber" style="left:290px;top:196px;animation-delay:.25s">  <div class="nw-dot"></div><div class="nw-label">Retail</div></div>
+        <!-- EDTECH -->
+        <div class="nw-node n-dim"   style="left:110px;top:268px;animation-delay:.3s">   <div class="nw-dot"></div><div class="nw-label">EdTech</div></div>
+        <!-- MANUFACTURING -->
+        <div class="nw-node n-dim"   style="left:248px;top:266px;animation-delay:.35s">  <div class="nw-dot"></div><div class="nw-label">Manufacturing</div></div>
+        <!-- AMBIENT SMALL -->
+        <div class="nw-node n-tiny"  style="left:32px;top:94px;animation-delay:.4s">     <div class="nw-dot"></div></div>
+        <div class="nw-node n-tiny"  style="left:316px;top:124px;animation-delay:.45s">  <div class="nw-dot"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IS THIS FOR -->
+<section id="who">
+  <div class="fade-up">
+    <div class="section-label">Who Is This For</div>
+    <h2 class="section-h2">Two Audiences.<br>One Shared Mission.</h2>
+    <p class="section-sub">AI Frontier is built for two groups united by a shared goal — making AI work in the real world.</p>
+  </div>
+
+  <div class="who-grid">
+
+    <!-- ── BUSINESS LEADERS ── -->
+    <div class="who-card leaders fade-up">
+      <!-- Illustrated visual header -->
+      <div class="who-card-visual">
+        <div class="who-visual-glow"></div>
+        <svg viewBox="0 0 520 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lcg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#00E09A" stop-opacity="0.7"/>
+            </linearGradient>
+            <linearGradient id="lbar" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00D4FF"/>
+              <stop offset="100%" stop-color="#00E09A"/>
+            </linearGradient>
+            <filter id="lg1"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+
+          <!-- Org chart: CEO at top, 3 departments below, AI nodes -->
+          <!-- Central CEO node -->
+          <rect x="215" y="18" width="90" height="36" rx="8" fill="rgba(0,136,204,0.12)" stroke="rgba(0,136,204,0.55)" stroke-width="1.5"/>
+          <text x="260" y="31" text-anchor="middle" font-size="8" fill="rgba(15,25,50,0.5)" font-family="Plus Jakarta Sans" letter-spacing="0.06em" text-transform="uppercase">LEADERSHIP</text>
+          <text x="260" y="45" text-anchor="middle" font-size="11" fill="#0077BB" font-family="Plus Jakarta Sans" font-weight="700">C-Suite</text>
+
+          <!-- Vertical line down -->
+          <line x1="260" y1="54" x2="260" y2="78" stroke="rgba(0,212,255,0.25)" stroke-width="1.5" stroke-dasharray="3,3"/>
+          <!-- Horizontal branch -->
+          <line x1="120" y1="78" x2="400" y2="78" stroke="rgba(0,212,255,0.2)" stroke-width="1.5"/>
+
+          <!-- 3 Dept nodes -->
+          <!-- Finance -->
+          <line x1="120" y1="78" x2="120" y2="96" stroke="rgba(0,212,255,0.2)" stroke-width="1.5"/>
+          <rect x="74" y="96" width="92" height="32" rx="7" fill="rgba(15,25,50,0.04)" stroke="rgba(15,25,50,0.12)" stroke-width="1"/>
+          <text x="120" y="116" text-anchor="middle" font-size="10" fill="rgba(15,25,50,0.55)" font-family="Plus Jakarta Sans">Finance</text>
+
+          <!-- Operations -->
+          <line x1="260" y1="78" x2="260" y2="96" stroke="rgba(0,212,255,0.2)" stroke-width="1.5"/>
+          <rect x="210" y="96" width="100" height="32" rx="7" fill="rgba(0,136,204,0.1)" stroke="rgba(0,136,204,0.4)" stroke-width="1"/>
+          <text x="260" y="116" text-anchor="middle" font-size="10" fill="#0077BB" font-family="Plus Jakarta Sans" font-weight="600">Operations</text>
+
+          <!-- HR -->
+          <line x1="400" y1="78" x2="400" y2="96" stroke="rgba(0,212,255,0.2)" stroke-width="1.5"/>
+          <rect x="354" y="96" width="92" height="32" rx="7" fill="rgba(15,25,50,0.04)" stroke="rgba(15,25,50,0.12)" stroke-width="1"/>
+          <text x="400" y="116" text-anchor="middle" font-size="10" fill="rgba(15,25,50,0.55)" font-family="Plus Jakarta Sans">HR &amp; Talent</text>
+
+          <!-- AI transformation arrows going up into org -->
+          <!-- AI badge floating -->
+          <rect x="22" y="56" width="60" height="22" rx="5" fill="rgba(0,212,255,0.15)" stroke="rgba(0,212,255,0.4)" stroke-width="1"/>
+          <text x="52" y="70" text-anchor="middle" font-size="9" fill="#0077BB" font-family="Plus Jakarta Sans" font-weight="700">AI Layer</text>
+          <line x1="82" y1="67" x2="118" y2="78" stroke="rgba(0,212,255,0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+
+          <!-- Performance metric bars at bottom -->
+          <text x="22" y="152" font-size="8" fill="rgba(15,25,50,0.4)" font-family="Plus Jakarta Sans" letter-spacing="0.08em">EFFICIENCY GAINS</text>
+          <!-- Bar 1 -->
+          <rect x="22" y="160" width="100" height="6" rx="3" fill="rgba(15,25,50,0.08)"/>
+          <rect x="22" y="160" width="82" height="6" rx="3" fill="url(#lbar)"/>
+          <text x="130" y="167" font-size="8" fill="#00D4FF" font-family="Plus Jakarta Sans" font-weight="700">82%</text>
+          <!-- Bar 2 -->
+          <rect x="22" y="174" width="100" height="6" rx="3" fill="rgba(15,25,50,0.08)"/>
+          <rect x="22" y="174" width="65" height="6" rx="3" fill="url(#lbar)" opacity="0.7"/>
+          <text x="130" y="181" font-size="8" fill="rgba(0,119,187,0.8)" font-family="Plus Jakarta Sans" font-weight="700">65%</text>
+          <!-- Bar 3 -->
+          <rect x="22" y="188" width="100" height="6" rx="3" fill="rgba(15,25,50,0.08)"/>
+          <rect x="22" y="188" width="90" height="6" rx="3" fill="url(#lbar)" opacity="0.55"/>
+          <text x="130" y="195" font-size="8" fill="rgba(0,119,187,0.65)" font-family="Plus Jakarta Sans" font-weight="700">90%</text>
+
+          <!-- Peer network bubble (right side) -->
+          <!-- Working group circles -->
+          <circle cx="390" cy="152" r="26" fill="rgba(0,136,204,0.08)" stroke="rgba(0,136,204,0.3)" stroke-width="1.5"/>
+          <text x="390" y="149" text-anchor="middle" font-size="9" fill="rgba(15,25,50,0.5)" font-family="Plus Jakarta Sans">Working</text>
+          <text x="390" y="160" text-anchor="middle" font-size="9" fill="rgba(15,25,50,0.5)" font-family="Plus Jakarta Sans">Group</text>
+
+          <circle cx="450" cy="172" r="18" fill="rgba(0,150,94,0.08)" stroke="rgba(0,150,94,0.3)" stroke-width="1"/>
+          <text x="450" y="175" text-anchor="middle" font-size="8" fill="rgba(0,120,75,0.7)" font-family="Plus Jakarta Sans">Peers</text>
+
+          <circle cx="336" cy="168" r="16" fill="rgba(0,136,204,0.06)" stroke="rgba(0,136,204,0.22)" stroke-width="1"/>
+          <text x="336" y="171" text-anchor="middle" font-size="8" fill="rgba(0,119,187,0.6)" font-family="Plus Jakarta Sans">Intel</text>
+
+          <line x1="352" y1="162" x2="366" y2="158" stroke="rgba(0,136,204,0.25)" stroke-width="1"/>
+          <line x1="414" y1="156" x2="434" y2="162" stroke="rgba(0,150,94,0.25)" stroke-width="1"/>
+        </svg>
+      </div>
+
+      <!-- Body -->
+      <div class="who-card-body">
+        <div class="who-tag"><span class="who-tag-dot"></span>Business Leaders</div>
+        <h3>Transform Your<br>Organization with AI</h3>
+        <p>You need to talk to peers who have already done it — not sales pitches. You want vetted vendors, real benchmarks, and a shortcut past the expensive mistakes.</p>
+        <ul class="who-traits">
+          <li>Talk to peers in your industry who've deployed AI in production</li>
+          <li>Benchmark your AI maturity against similar organizations</li>
+          <li>Access vetted vendors evaluated by people who've used them</li>
+          <li>Learn in weeks what would take months figuring out alone</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── PROFESSIONALS ── -->
+    <div class="who-card professionals fade-up">
+      <!-- Illustrated visual header -->
+      <div class="who-card-visual">
+        <div class="who-visual-glow"></div>
+        <svg viewBox="0 0 520 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ag" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#F5A623"/>
+              <stop offset="100%" stop-color="#00D4FF"/>
+            </linearGradient>
+            <filter id="ag1"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+
+          <!-- Career ladder / trajectory -->
+          <!-- Upward path line -->
+          <polyline points="60,175 140,130 230,85 330,52 430,30" fill="none" stroke="url(#ag)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+          <!-- Glow version -->
+          <polyline points="60,175 140,130 230,85 330,52 430,30" fill="none" stroke="url(#ag)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.08"/>
+
+          <!-- Career milestone nodes -->
+          <!-- Level 1: Curious -->
+          <circle cx="60" cy="175" r="12" fill="rgba(212,130,10,0.1)" stroke="rgba(212,130,10,0.35)" stroke-width="1.5"/>
+          <text x="60" y="179" text-anchor="middle" font-size="9" fill="rgba(245,166,35,0.6)" font-family="Plus Jakarta Sans">🌱</text>
+          <text x="60" y="194" text-anchor="middle" font-size="8" fill="rgba(15,25,50,0.4)" font-family="Plus Jakarta Sans">Curious</text>
+
+          <!-- Level 2: Practitioner -->
+          <circle cx="140" cy="130" r="14" fill="rgba(212,130,10,0.12)" stroke="rgba(212,130,10,0.4)" stroke-width="1.5"/>
+          <text x="140" y="134" text-anchor="middle" font-size="10" fill="rgba(180,100,5,0.8)" font-family="Plus Jakarta Sans">⚡</text>
+          <text x="140" y="152" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.35)" font-family="Plus Jakarta Sans">Practitioner</text>
+
+          <!-- Level 3: Builder (highlighted) -->
+          <circle cx="230" cy="85" r="18" fill="rgba(212,130,10,0.15)" stroke="rgba(212,130,10,0.55)" stroke-width="2" filter="url(#ag1)"/>
+          <text x="230" y="90" text-anchor="middle" font-size="12" fill="#C07010" font-family="Plus Jakarta Sans">🔧</text>
+          <text x="230" y="110" text-anchor="middle" font-size="8" fill="rgba(180,100,5,0.8)" font-family="Plus Jakarta Sans" font-weight="600">Builder</text>
+
+          <!-- Level 4: AI Lead -->
+          <circle cx="330" cy="52" r="16" fill="rgba(0,136,204,0.1)" stroke="rgba(0,136,204,0.5)" stroke-width="1.5"/>
+          <text x="330" y="56" text-anchor="middle" font-size="11" fill="#0088CC" font-family="Plus Jakarta Sans">🎯</text>
+          <text x="330" y="74" text-anchor="middle" font-size="8" fill="rgba(0,100,160,0.7)" font-family="Plus Jakarta Sans">AI Lead</text>
+
+          <!-- Level 5: Native (top) -->
+          <circle cx="430" cy="30" r="20" fill="rgba(0,136,204,0.14)" stroke="#0088CC" stroke-width="2" filter="url(#ag1)"/>
+          <text x="430" y="35" text-anchor="middle" font-size="14" fill="#0077BB" font-family="Plus Jakarta Sans">🚀</text>
+          <text x="430" y="56" text-anchor="middle" font-size="8" fill="#0077BB" font-family="Plus Jakarta Sans" font-weight="700">AI-Native</text>
+
+          <!-- Mentorship connection line -->
+          <line x1="390" y1="90" x2="330" y2="60" stroke="rgba(0,212,255,0.2)" stroke-width="1" stroke-dasharray="3,4"/>
+          <rect x="370" y="90" width="74" height="22" rx="5" fill="rgba(0,136,204,0.1)" stroke="rgba(0,136,204,0.35)" stroke-width="1"/>
+          <text x="407" y="104" text-anchor="middle" font-size="8.5" fill="#0077BB" font-family="Plus Jakarta Sans" font-weight="600">Mentorship</text>
+
+          <!-- Skills being gained (bottom right) -->
+          <rect x="320" y="128" width="72" height="20" rx="4" fill="rgba(212,130,10,0.1)" stroke="rgba(212,130,10,0.3)" stroke-width="1"/>
+          <text x="356" y="141" text-anchor="middle" font-size="8" fill="rgba(180,100,5,0.8)" font-family="Plus Jakarta Sans">Prompt Eng.</text>
+
+          <rect x="398" y="128" width="72" height="20" rx="4" fill="rgba(0,150,94,0.1)" stroke="rgba(0,150,94,0.3)" stroke-width="1"/>
+          <text x="434" y="141" text-anchor="middle" font-size="8" fill="rgba(0,120,75,0.8)" font-family="Plus Jakarta Sans">RAG / Agents</text>
+
+          <rect x="320" y="154" width="72" height="20" rx="4" fill="rgba(0,212,255,0.08)" stroke="rgba(0,136,204,0.25)" stroke-width="1"/>
+          <text x="356" y="167" text-anchor="middle" font-size="8" fill="rgba(0,100,160,0.7)" font-family="Plus Jakarta Sans">AI Strategy</text>
+
+          <rect x="398" y="154" width="72" height="20" rx="4" fill="rgba(212,130,10,0.08)" stroke="rgba(212,130,10,0.25)" stroke-width="1"/>
+          <text x="434" y="167" text-anchor="middle" font-size="8" fill="rgba(160,90,5,0.7)" font-family="Plus Jakarta Sans">Fine-tuning</text>
+
+          <!-- Salary indicator -->
+          <text x="22" y="70" font-size="8" fill="rgba(15,25,50,0.4)" font-family="Plus Jakarta Sans" letter-spacing="0.08em">INCOME GROWTH</text>
+          <rect x="22" y="78" width="80" height="5" rx="2.5" fill="rgba(15,25,50,0.08)"/>
+          <rect x="22" y="78" width="68" height="5" rx="2.5" fill="url(#ag)" opacity="0.7"/>
+          <text x="108" y="84" font-size="8" fill="#C07010" font-family="Plus Jakarta Sans" font-weight="700">+47%</text>
+
+          <rect x="22" y="90" width="80" height="5" rx="2.5" fill="rgba(15,25,50,0.08)"/>
+          <rect x="22" y="90" width="55" height="5" rx="2.5" fill="url(#ag)" opacity="0.5"/>
+          <text x="108" y="96" font-size="8" fill="rgba(180,100,5,0.8)" font-family="Plus Jakarta Sans" font-weight="700">+8mo</text>
+        </svg>
+      </div>
+
+      <!-- Body -->
+      <div class="who-card-body">
+        <div class="who-tag"><span class="who-tag-dot"></span>Professionals</div>
+        <h3>Accelerate Your<br>AI-First Career</h3>
+        <p>You're hands-on and ambitious. You need a living network of practitioners building alongside you — not passive content you'll never use.</p>
+        <ul class="who-traits">
+          <li>Get matched with a mentor who's been exactly where you are</li>
+          <li>Build real skills on live AI implementation projects</li>
+          <li>Grow your network with AI-powered peer matchmaking</li>
+          <li>Establish your reputation through research & knowledge contributions</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="benefits" style="background:var(--ink4); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="fade-up">
+    <div class="section-label">What's In It For You</div>
+    <h2 class="section-h2">Real Outcomes,<br>Not Just Content</h2>
+  </div>
+  <div class="benefits-tabs">
+    <button class="benefits-tab active" onclick="switchBenefits(this,'leaders')">For Business Leaders</button>
+    <button class="benefits-tab" onclick="switchBenefits(this,'pros')">For Professionals</button>
+  </div>
+  <div id="benefits-leaders" class="benefits-grid">
+    <div class="benefit-item">
+      <div class="benefit-num">01</div>
+      <div class="benefit-title">Confidential Peer Groups</div>
+      <div class="benefit-desc">Join 8–15 peers from your industry facing the same challenges — share what's actually working, without the PR spin.</div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">02</div>
+      <div class="benefit-title">AI Maturity Benchmarking</div>
+      <div class="benefit-desc">Benchmark your AI maturity against similar organizations through our research and working group data.</div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">03</div>
+      <div class="benefit-title">Production-Tested Knowledge</div>
+      <div class="benefit-desc">Learn from professionals who have deployed AI in production — not theorized about it in a slide deck.</div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">04</div>
+      <div class="benefit-title">Vetted AI Marketplace</div>
+      <div class="benefit-desc">Access vetted AI vendors through the community. No sales pitches — just honest evaluations from people who've used them.</div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">05</div>
+      <div class="benefit-title">AI-Powered Matchmaking</div>
+      <div class="benefit-desc">Get AI-powered recommendations for partners, tools, and resources matched to your specific industry and business needs.</div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">06</div>
+      <div class="benefit-title">Intelligence Feed Access</div>
+      <div class="benefit-desc">Full access to the AI Frontier Intelligence Feed — live signals from working groups on what's gaining trust across industries.</div>
+    </div>
+  </div>
+  <div id="benefits-pros" class="benefits-grid" style="display:none;">
+    <div class="benefit-item">
+      <div class="benefit-num">01</div>
+      <div class="benefit-title">Mentor Matching</div>
+      <div class="benefit-desc">Get matched with a mentor who has navigated the exact career path you're on — real guidance, not generic advice.</div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">02</div>
+      <div class="benefit-title">Hands-On Projects</div>
+      <div class="benefit-desc">Build real AI implementation skills on live projects alongside senior practitioners in your domain.</div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">03</div>
+      <div class="benefit-title">Structured Courses</div>
+      <div class="benefit-desc">Access courses spanning technology evolution, business transformation, and personal productivity in the AI era.</div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">04</div>
+      <div class="benefit-title">Network Matchmaking</div>
+      <div class="benefit-desc">Grow your network through AI-powered matchmaking with peers, hiring managers, and collaborators in your field.</div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">05</div>
+      <div class="benefit-title">Build Your Reputation</div>
+      <div class="benefit-desc">Establish your expertise through contributions to research, product development, and the community knowledge base.</div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-num">06</div>
+      <div class="benefit-title">Career Acceleration</div>
+      <div class="benefit-desc">Members who actively engage report promotions, salary increases, and new opportunities within 6–12 months.</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTELLIGENCE FEED FULL SECTION -->
+<section class="intelligence-section" id="intelligence">
+  <div class="intelligence-header fade-up">
+    <div class="intel-badge">
+      <span class="intel-live-dot"></span>
+      AI Frontier Intelligence Feed — Our Boldest Feature
+    </div>
+    <h2 class="section-h2" style="text-align:center;">The Bloomberg Terminal<br>for AI Adoption</h2>
+    <p class="section-sub" style="text-align:center; margin:0 auto;">Real-time anonymized signals from 60+ working groups — revealing which AI tools are gaining trust, which use cases are succeeding, and which industries are pulling ahead.</p>
+  </div>
+
+  <div class="intel-full-dashboard">
+    <!-- Vendor Trust Full -->
+    <div class="intel-card fade-up">
+      <div class="intel-card-header">
+        <span class="intel-card-title">Vendor Trust Index</span>
+        <span style="font-size:10px;color:var(--green);font-weight:700;">↑ Live</span>
+      </div>
+      <div class="intel-card-body">
+        <div class="vendor-chart">
+          <div class="vendor-row"><span class="vendor-name">OpenAI</span><div class="vendor-bar-wrap"><div class="vendor-bar" style="--w:91%"></div></div><span class="vendor-score">91</span><span class="vendor-delta up">+3</span></div>
+          <div class="vendor-row"><span class="vendor-name">Anthropic</span><div class="vendor-bar-wrap"><div class="vendor-bar" style="--w:88%"></div></div><span class="vendor-score">88</span><span class="vendor-delta up">+5</span></div>
+          <div class="vendor-row"><span class="vendor-name">Glean</span><div class="vendor-bar-wrap"><div class="vendor-bar" style="--w:82%"></div></div><span class="vendor-score">82</span><span class="vendor-delta up">+8</span></div>
+          <div class="vendor-row"><span class="vendor-name">Writer AI</span><div class="vendor-bar-wrap"><div class="vendor-bar" style="--w:79%"></div></div><span class="vendor-score">79</span><span class="vendor-delta up">+2</span></div>
+          <div class="vendor-row"><span class="vendor-name">Cohere</span><div class="vendor-bar-wrap"><div class="vendor-bar" style="--w:74%"></div></div><span class="vendor-score">74</span><span class="vendor-delta dn">−1</span></div>
+          <div class="vendor-row"><span class="vendor-name">Synthesia</span><div class="vendor-bar-wrap"><div class="vendor-bar" style="--w:68%"></div></div><span class="vendor-score">68</span><span class="vendor-delta up">+11</span></div>
+          <div class="vendor-row"><span class="vendor-name">HeyGen</span><div class="vendor-bar-wrap"><div class="vendor-bar" style="--w:64%"></div></div><span class="vendor-score">64</span><span class="vendor-delta up">+6</span></div>
+        </div>
+        <div class="source-tag"><strong>Source:</strong> AI Frontier Vendor Trust Index — composite score (0–100) from 847 member evaluations across 18 industries, Q1 2025. Factors: deployment success 40%, support quality 30%, reported ROI 20%, ease of integration 10%. Vendors pay no fees to appear. Δ = change vs. prior 30-day period. Full methodology available to members.</div>
+      </div>
+    </div>
+
+    <!-- Activity Heatmap -->
+    <div class="intel-card fade-up">
+      <div class="intel-card-header">
+        <span class="intel-card-title">Working Group Activity</span>
+        <span style="font-size:10px;color:var(--white40);">Past 7 weeks</span>
+      </div>
+      <div class="intel-card-body">
+        <div style="font-size:11px;color:var(--white40);margin-bottom:12px;">Sessions · Insights Shared · Vendor Evaluations</div>
+        <div class="heatmap-grid" id="heatmap"></div>
+        <div class="heatmap-labels">
+          <span class="heatmap-label">W1</span>
+          <span class="heatmap-label">W2</span>
+          <span class="heatmap-label">W3</span>
+          <span class="heatmap-label">W4</span>
+          <span class="heatmap-label">W5</span>
+          <span class="heatmap-label">W6</span>
+          <span class="heatmap-label">W7</span>
+        </div>
+        <div style="margin-top:20px;">
+          <div style="font-size:11px;color:var(--white40);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.06em;">Top Active Groups This Week</div>
+          <div style="display:flex;flex-direction:column;gap:8px;" id="top-groups">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--ink4);border-radius:6px;border:1px solid var(--border);">
+              <span style="font-size:12px;color:var(--white70);">FinTech AI Working Group</span>
+              <span style="font-size:11px;font-weight:700;color:var(--cyan);">14 sessions</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--ink4);border-radius:6px;border:1px solid var(--border);">
+              <span style="font-size:12px;color:var(--white70);">Healthcare AI Leaders</span>
+              <span style="font-size:11px;font-weight:700;color:var(--cyan);">11 sessions</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--ink4);border-radius:6px;border:1px solid var(--border);">
+              <span style="font-size:12px;color:var(--white70);">Enterprise AI Ops Group</span>
+              <span style="font-size:11px;font-weight:700;color:var(--amber);">9 sessions</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--ink4);border-radius:6px;border:1px solid var(--border);">
+              <span style="font-size:12px;color:var(--white70);">Legal Tech Practitioners</span>
+              <span style="font-size:11px;font-weight:700;color:var(--white40);">7 sessions</span>
+            </div>
+          </div>
+        </div>
+        <div class="source-tag"><strong>Source:</strong> AI Frontier platform session logs — 7-week rolling window ending Mar 9, 2025. Each cell = one working group session. Anonymised; no member data is exposed.</div>
+      </div>
+    </div>
+
+    <!-- Use Case Signals -->
+    <div class="intel-card fade-up">
+      <div class="intel-card-header">
+        <span class="intel-card-title">Emerging Use Cases</span>
+        <span style="font-size:10px;color:var(--amber);font-weight:700;">↑ Trending</span>
+      </div>
+      <div class="intel-card-body">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="background:var(--ink4);border:1px solid var(--border);border-radius:8px;padding:14px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+              <span style="font-size:12px;font-weight:700;color:var(--white);">RAG for Internal Knowledge</span>
+              <span style="font-size:11px;padding:2px 8px;background:var(--green-dim);color:var(--green);border-radius:4px;font-weight:700;">HOT</span>
+            </div>
+            <div style="font-size:11px;color:var(--white40);margin-bottom:8px;">41 working groups evaluating · Avg score 84/100</div>
+            <div style="height:4px;background:var(--ink4);border-radius:2px;"><div style="height:100%;width:84%;background:linear-gradient(90deg,var(--green),var(--cyan));border-radius:2px;"></div></div>
+          </div>
+          <div style="background:var(--ink4);border:1px solid var(--border);border-radius:8px;padding:14px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+              <span style="font-size:12px;font-weight:700;color:var(--white);">AI Document Processing</span>
+              <span style="font-size:11px;padding:2px 8px;background:var(--cyan-dim);color:var(--cyan);border-radius:4px;font-weight:700;">RISING</span>
+            </div>
+            <div style="font-size:11px;color:var(--white40);margin-bottom:8px;">27 groups · Avg deployment time 6 weeks</div>
+            <div style="height:4px;background:var(--ink4);border-radius:2px;"><div style="height:100%;width:72%;background:linear-gradient(90deg,var(--cyan),var(--green));border-radius:2px;"></div></div>
+          </div>
+          <div style="background:var(--ink4);border:1px solid var(--border);border-radius:8px;padding:14px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+              <span style="font-size:12px;font-weight:700;color:var(--white);">AI Sales Coaching</span>
+              <span style="font-size:11px;padding:2px 8px;background:var(--amber-dim);color:var(--amber);border-radius:4px;font-weight:700;">WATCH</span>
+            </div>
+            <div style="font-size:11px;color:var(--white40);margin-bottom:8px;">18 groups · Mixed results, ROI unclear</div>
+            <div style="height:4px;background:var(--ink4);border-radius:2px;"><div style="height:100%;width:55%;background:linear-gradient(90deg,var(--amber),var(--cyan));border-radius:2px;"></div></div>
+          </div>
+          <div style="background:var(--ink4);border:1px solid var(--border);border-radius:8px;padding:14px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+              <span style="font-size:12px;font-weight:700;color:var(--white);">Autonomous Agents</span>
+              <span style="font-size:11px;padding:2px 8px;background:rgba(255,75,110,0.12);color:var(--red);border-radius:4px;font-weight:700;">CAUTION</span>
+            </div>
+            <div style="font-size:11px;color:var(--white40);margin-bottom:8px;">Early stage · Governance gaps flagged</div>
+            <div style="height:4px;background:var(--ink4);border-radius:2px;"><div style="height:100%;width:38%;background:var(--red);border-radius:2px;"></div></div>
+          </div>
+        </div>
+        <div class="source-tag"><strong>Source:</strong> AI Frontier Working Group Discussions, Q1 2025. Scores = aggregated member-rated deployment success (0–100). Status labels: HOT ≥80, RISING 60–79, WATCH 40–59, CAUTION &lt;40. Based on 60+ active groups.</div>
+      </div>
+    </div>
+  </div>
+    <!-- Adoption Curve by Industry -->
+    <div class="intel-card fade-up">
+      <div class="intel-card-header">
+        <span class="intel-card-title">Industry Adoption Curve (12-Month)</span>
+        <span style="font-size:10px;color:var(--white40);">Members self-reported · N=2,341</span>
+      </div>
+      <div class="intel-card-body">
+        <svg viewBox="0 0 500 160" style="width:100%;height:160px;">
+          <defs>
+            <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#00D4FF"/>
+              <stop offset="100%" stop-color="#00E09A"/>
+            </linearGradient>
+            <linearGradient id="grad2" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#F5A623"/>
+              <stop offset="100%" stop-color="#00D4FF"/>
+            </linearGradient>
+            <linearGradient id="area1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0088CC" stop-opacity="0.2"/>
+              <stop offset="100%" stop-color="#00D4FF" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="area2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F5A623" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="#F5A623" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <!-- Grid -->
+          <line x1="0" y1="30" x2="500" y2="30" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <line x1="0" y1="70" x2="500" y2="70" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <line x1="0" y1="110" x2="500" y2="110" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <line x1="0" y1="150" x2="500" y2="150" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <!-- Area fills -->
+          <polygon points="0,150 50,130 100,110 160,80 220,50 280,35 340,25 400,20 460,18 500,16 500,150 0,150" fill="url(#area1)"/>
+          <polygon points="0,150 50,145 100,138 160,120 220,100 280,85 340,72 400,65 460,60 500,58 500,150 0,150" fill="url(#area2)"/>
+          <!-- Lines -->
+          <polyline points="0,150 50,130 100,110 160,80 220,50 280,35 340,25 400,20 460,18 500,16" fill="none" stroke="url(#grad1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="0,150 50,145 100,138 160,120 220,100 280,85 340,72 400,65 460,60 500,58" fill="none" stroke="url(#grad2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5,3"/>
+          <!-- Dots -->
+          <circle cx="500" cy="16" r="4" fill="#009966" filter="url(#glow)"/>
+          <circle cx="500" cy="58" r="4" fill="#F5A623"/>
+          <!-- Labels -->
+          <text x="4" y="148" font-size="8" fill="rgba(15,25,50,0.4)" font-family="DM Sans">Mar '24</text>
+          <text x="220" y="148" font-size="8" fill="rgba(15,25,50,0.4)" font-family="DM Sans">Sep '24</text>
+          <text x="466" y="148" font-size="8" fill="rgba(15,25,50,0.4)" font-family="DM Sans">Mar '25</text>
+          <text x="430" y="12" font-size="9" fill="#00E09A" font-weight="700" font-family="DM Sans">FinTech 89%</text>
+          <text x="430" y="54" font-size="9" fill="#F5A623" font-family="DM Sans">Healthcare 76%</text>
+        </svg>
+        <div style="display:flex;gap:16px;margin-top:12px;">
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--white40);">
+            <div style="width:16px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--green));border-radius:1px;"></div>FinTech (leader)
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--white40);">
+            <div style="width:16px;height:2px;background:var(--amber);border-radius:1px;border-top:1px dashed var(--amber);"></div>Healthcare
+          </div>
+        </div>
+        <div class="source-tag"><strong>Source:</strong> AI Frontier Quarterly Member Survey — N=2,341. Respondents self-reported whether their org has ≥1 AI tool in active production. 12-month rolling data Mar '24 – Mar '25. Margin of error ±3%.</div>
+      </div>
+    </div>
+
+    <!-- Live Insights Feed -->
+    <div class="intel-card fade-up">
+      <div class="intel-card-header">
+        <span class="intel-card-title">Working Group Insights</span>
+        <div class="intel-live"><span class="intel-live-dot"></span> Live Stream</div>
+      </div>
+      <div class="intel-card-body" id="full-activity-feed">
+        <!-- Populated by JS -->
+      </div>
+      <div class="source-tag" style="margin:0 20px 16px;"><strong>Source:</strong> Anonymised real-time activity from AI Frontier working group sessions. Member identities are never shown. Insights are paraphrased by moderators before publication.</div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:48px;" class="fade-up">
+    <p style="color:var(--white40);font-size:14px;margin-bottom:20px;">Full Intelligence Feed with drill-down reports, vendor comparisons, and benchmark data is available to members.</p>
+    <a href="#join" class="btn-primary">Unlock Full Access — Join Free</a>
+  </div>
+</section>
+
+<!-- ECOSYSTEM -->
+<section id="ecosystem" style="background:var(--ink);border-top:1px solid var(--border);">
+  <div class="fade-up">
+    <div class="section-label">The Ecosystem</div>
+    <h2 class="section-h2">Four Pillars.<br>Every Dimension Covered.</h2>
+    <p class="section-sub">AI Frontier is organized around four interconnected pillars that cover every dimension of the AI-first journey.</p>
+  </div>
+  <div class="ecosystem-grid">
+    <div class="eco-card fade-up">
+      <span class="eco-number">1</span>
+      <div class="eco-icon">📚</div>
+      <div class="eco-title">How You Learn</div>
+      <div class="eco-desc">Courses, mentorship, coaching, peer-to-peer exchange, and a content library spanning technology evolution, business transformation, and personal productivity.</div>
+    </div>
+    <div class="eco-card fade-up">
+      <span class="eco-number">2</span>
+      <div class="eco-icon">🤝</div>
+      <div class="eco-title">How You Do Business</div>
+      <div class="eco-desc">Partnerships, consortiums that collectively build industry-specific AI solutions, and a curated marketplace connecting AI-first buyers and sellers.</div>
+    </div>
+    <div class="eco-card fade-up">
+      <span class="eco-number">3</span>
+      <div class="eco-icon">🛡️</div>
+      <div class="eco-title">How We Support You</div>
+      <div class="eco-desc">Original research, global events, and always-on communication channels that keep you informed, connected, and ahead of the curve.</div>
+    </div>
+    <div class="eco-card fade-up">
+      <span class="eco-number">4</span>
+      <div class="eco-icon">⚙️</div>
+      <div class="eco-title">How We Operate</div>
+      <div class="eco-desc">Self-managed teams in a transparent member-governed structure with local and virtual chapters, committees, and AI tools that make every interaction smarter.</div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers-section">
+  <div class="numbers-grid">
+    <div class="number-item">
+      <span class="number-val" style="color:var(--cyan);" data-count="5000">0+</span>
+      <span class="number-label">Members</span>
+    </div>
+    <div class="number-item">
+      <span class="number-val" style="color:var(--green);" data-count="120">0+</span>
+      <span class="number-label">AI Partners</span>
+    </div>
+    <div class="number-item">
+      <span class="number-val" style="color:var(--amber);" data-count="60">0+</span>
+      <span class="number-label">Active Working Groups</span>
+    </div>
+    <div class="number-item">
+      <span class="number-val" style="color:var(--cyan);" data-count="40">0+</span>
+      <span class="number-label">Chapters</span>
+    </div>
+    <div class="number-item">
+      <span class="number-val" style="color:var(--green);" data-count="25">0+</span>
+      <span class="number-label">Countries</span>
+    </div>
+    <div class="number-item">
+      <span class="number-val" style="color:var(--amber);" data-count="200">0+</span>
+      <span class="number-label">Events Per Year</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="fade-up">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-h2">Two Steps to<br>Your Home Group</h2>
+  </div>
+  <div class="how-steps">
+    <div style="display:flex;flex-direction:column;gap:24px;">
+      <div class="step fade-up">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h3>Onboarding</h3>
+          <p>Sign up for free. Fill out a form so we understand your background, goals, and what you can contribute. Join our Telegram group. Attend a 30-minute orientation call to learn how the community works and meet the team.</p>
+        </div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h3>Collaboration</h3>
+          <p>Based on your industry, role, and goals, you'll be placed into your "home group" of 8–15 members. Access the vetted AI Marketplace, expert coaching and mentorship, and AI assistants that match you with the right people and resources.</p>
+        </div>
+      </div>
+    </div>
+    <div class="how-visual fade-up">
+      <!-- Onboarding Flow Visualization -->
+      <svg viewBox="0 0 320 280" style="width:100%;max-width:320px;">
+        <defs>
+          <filter id="glow2">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- Flow arrow line -->
+        <line x1="160" y1="40" x2="160" y2="250" stroke="rgba(15,25,50,0.12)" stroke-width="2" stroke-dasharray="4,6"/>
+        <!-- Step 1: Sign Up -->
+        <circle cx="160" cy="50" r="26" fill="rgba(0,136,204,0.06)" stroke="rgba(0,136,204,0.45)" stroke-width="1.5"/>
+        <text x="160" y="46" text-anchor="middle" font-size="14" fill="var(--cyan)">✍</text>
+        <text x="160" y="58" text-anchor="middle" font-size="8" fill="rgba(15,25,50,0.5)">Sign Up</text>
+        <!-- Step 2: Orientation -->
+        <circle cx="160" cy="118" r="26" fill="rgba(0,136,204,0.06)" stroke="rgba(0,136,204,0.45)" stroke-width="1.5"/>
+        <text x="160" y="114" text-anchor="middle" font-size="14" fill="var(--cyan)">📞</text>
+        <text x="160" y="126" text-anchor="middle" font-size="8" fill="rgba(15,25,50,0.5)">30-min Call</text>
+        <!-- Step 3: Home Group -->
+        <circle cx="160" cy="186" r="26" fill="rgba(0,136,204,0.1)" stroke="var(--cyan)" stroke-width="2" filter="url(#glow2)"/>
+        <text x="160" y="182" text-anchor="middle" font-size="14" fill="var(--cyan)">👥</text>
+        <text x="160" y="194" text-anchor="middle" font-size="8" fill="var(--cyan)" font-weight="700">Home Group</text>
+        <!-- Side labels -->
+        <text x="30" y="54" font-size="9" fill="rgba(15,25,50,0.4)" text-anchor="middle">Profile +</text>
+        <text x="30" y="64" font-size="9" fill="rgba(15,25,50,0.4)" text-anchor="middle">Telegram</text>
+        <text x="290" y="122" font-size="9" fill="rgba(15,25,50,0.4)" text-anchor="middle">Meet team</text>
+        <text x="290" y="132" font-size="9" fill="rgba(15,25,50,0.4)" text-anchor="middle">+ goals</text>
+        <!-- Orbital nodes around Home Group -->
+        <circle cx="100" cy="240" r="18" fill="rgba(15,25,50,0.05)" stroke="rgba(15,25,50,0.15)" stroke-width="1"/>
+        <text x="100" y="236" text-anchor="middle" font-size="10" fill="var(--amber)">🏪</text>
+        <text x="100" y="248" text-anchor="middle" font-size="7" fill="rgba(15,25,50,0.45)">Market</text>
+        <circle cx="160" cy="255" r="18" fill="rgba(15,25,50,0.05)" stroke="rgba(15,25,50,0.15)" stroke-width="1"/>
+        <text x="160" y="251" text-anchor="middle" font-size="10" fill="var(--green)">🤖</text>
+        <text x="160" y="263" text-anchor="middle" font-size="7" fill="rgba(15,25,50,0.45)">AI Match</text>
+        <circle cx="220" cy="240" r="18" fill="rgba(15,25,50,0.05)" stroke="rgba(15,25,50,0.15)" stroke-width="1"/>
+        <text x="220" y="236" text-anchor="middle" font-size="10" fill="var(--cyan)">🎓</text>
+        <text x="220" y="248" text-anchor="middle" font-size="7" fill="rgba(15,25,50,0.45)">Courses</text>
+        <!-- Connecting lines to orbital -->
+        <line x1="160" y1="210" x2="100" y2="224" stroke="rgba(15,25,50,0.12)" stroke-width="1"/>
+        <line x1="160" y1="210" x2="160" y2="238" stroke="rgba(15,25,50,0.12)" stroke-width="1"/>
+        <line x1="160" y1="210" x2="220" y2="224" stroke="rgba(15,25,50,0.12)" stroke-width="1"/>
+        <!-- Arrows -->
+        <polygon points="160,85 155,75 165,75" fill="rgba(0,136,204,0.45)"/>
+        <polygon points="160,155 155,145 165,145" fill="rgba(0,136,204,0.45)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background:var(--ink);border-top:1px solid var(--border);border-bottom:1px solid var(--border);" id="testimonials">
+  <div class="fade-up">
+    <div class="section-label">What Our Members Say</div>
+    <h2 class="section-h2">Real Outcomes.<br>Real Voices.</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testi-card fade-up">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">I walked into my first working group session unsure whether our AI strategy was on track. By session three, I had <strong>benchmark data from five companies in my industry</strong>, a vendor shortlist vetted by people who'd actually deployed these tools, and a roadmap that saved us <strong>six months of trial and error.</strong></p>
+      <div class="testi-meta">
+        <div class="testi-tag">Working Groups</div>
+        <div class="testi-role">Chief Digital Officer, Healthcare Enterprise</div>
+      </div>
+    </div>
+    <div class="testi-card fade-up">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">We listed our AI documentation platform on the marketplace and had <strong>three qualified buyer conversations within two weeks</strong> — all facilitated by the Broker Agent with context on both sides. One of those conversations became our <strong>largest enterprise deal of the year.</strong></p>
+      <div class="testi-meta">
+        <div class="testi-tag">Marketplace</div>
+        <div class="testi-role">CEO, AI Startup</div>
+      </div>
+    </div>
+    <div class="testi-card fade-up">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">As a product manager pivoting into AI, I needed more than tutorials. The mentorship program paired me with a senior AI product leader who helped me navigate real decisions — <strong>pricing an AI feature, choosing build vs. buy,</strong> managing stakeholder expectations. <strong>I got promoted within eight months.</strong></p>
+      <div class="testi-meta">
+        <div class="testi-tag">Learning</div>
+        <div class="testi-role">Senior Product Manager, Tech Company</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="join">
+  <div class="fade-up">
+    <h2>The AI-First Economy<br>Isn't Slowing Down.</h2>
+    <p>Every week you spend figuring things out alone is a week your peers in the community are pulling ahead. Sign up free, attend a 30-minute orientation call, and get personally matched with the right people.</p>
+    <a href="#" class="btn-primary" style="font-size:17px;padding:18px 48px;">Join the Community — Free</a>
+    <p class="cta-note">No credit card. No sales calls. Just a 30-minute orientation and your home group.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="nav-logo-icon">◈</div>
+    AI Frontier
+  </div>
+  <ul class="footer-links">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Intelligence</a></li>
+    <li><a href="#">Marketplace</a></li>
+    <li><a href="#">Events</a></li>
+    <li><a href="#">Privacy</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 AI Frontier. All rights reserved.</div>
+</footer>
+
+<script>
+// ─── TAB SWITCHING ───
+function switchTab(el, id) {
+  document.querySelectorAll('.intel-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  ['vendors','activity','adoption'].forEach(t => {
+    const el2 = document.getElementById('tab-'+t);
+    if(el2) el2.style.display = t === id ? 'block' : 'none';
+  });
+  if(id==='activity') buildActivityFeed('activity-feed');
+  if(id==='adoption') animateAdoptionChart();
+}
+
+function switchBenefits(el, id) {
+  document.querySelectorAll('.benefits-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('benefits-leaders').style.display = id==='leaders' ? 'grid' : 'none';
+  document.getElementById('benefits-pros').style.display = id==='pros' ? 'grid' : 'none';
+}
+
+// ─── VENDOR BARS ANIMATION ───
+function animateBars() {
+  document.querySelectorAll('.vendor-bar').forEach(bar => {
+    const w = bar.style.getPropertyValue('--w');
+    bar.style.width = '0';
+    setTimeout(() => { bar.style.width = w; }, 200);
+  });
+}
+
+// ─── ACTIVITY FEED ───
+const feedData = [
+  {icon:'🏥',cls:'cyan',text:'<strong>Healthcare AI Group</strong> shared 3 new vendor evaluations for clinical documentation AI',time:'2 minutes ago'},
+  {icon:'💰',cls:'amber',text:'<strong>FinTech Working Group</strong> reported 94% ROI on fraud detection implementation after 60 days',time:'14 minutes ago'},
+  {icon:'🤝',cls:'green',text:'<strong>Marketplace</strong> — New deal closed: RAG platform matched with retail enterprise (5-figure contract)',time:'31 minutes ago'},
+  {icon:'📊',cls:'cyan',text:'<strong>Enterprise AI Ops</strong> benchmarked 6 workflow automation tools — results posted to knowledge base',time:'1 hour ago'},
+  {icon:'🎓',cls:'amber',text:'<strong>AI Professional</strong> promoted to Head of AI after 8 months of active community participation',time:'2 hours ago'},
+  {icon:'⚠️',cls:'cyan',text:'<strong>Legal Tech Group</strong> flagged compliance risks in 2 AI contract tools — advisory issued to members',time:'3 hours ago'},
+];
+
+function buildActivityFeed(containerId) {
+  const c = document.getElementById(containerId);
+  if(!c) return;
+  c.innerHTML = '';
+  feedData.slice(0,5).forEach((item,i) => {
+    const div = document.createElement('div');
+    div.className = 'feed-item';
+    div.style.animationDelay = (i*0.1)+'s';
+    div.innerHTML = `<div class="feed-icon ${item.cls}">${item.icon}</div><div><div class="feed-text">${item.text}</div><span class="feed-time">${item.time}</span></div>`;
+    c.appendChild(div);
+  });
+}
+
+// ─── FULL ACTIVITY FEED ───
+function buildFullFeed() {
+  const c = document.getElementById('full-activity-feed');
+  if(!c) return;
+  feedData.forEach((item,i) => {
+    const div = document.createElement('div');
+    div.className = 'feed-item';
+    div.style.animationDelay = (i*0.08)+'s';
+    div.innerHTML = `<div class="feed-icon ${item.cls}">${item.icon}</div><div><div class="feed-text">${item.text}</div><span class="feed-time">${item.time}</span></div>`;
+    c.appendChild(div);
+  });
+}
+
+// ─── HEATMAP ───
+function buildHeatmap() {
+  const container = document.getElementById('heatmap');
+  if(!container) return;
+  const intensities = [
+    [0.2,0.4,0.3,0.5,0.7,0.4,0.3],
+    [0.3,0.5,0.6,0.8,0.9,0.6,0.4],
+    [0.4,0.7,0.8,0.9,1.0,0.7,0.5],
+    [0.2,0.4,0.6,0.7,0.8,0.9,0.6],
+    [0.3,0.5,0.7,0.8,0.9,1.0,0.7],
+    [0.1,0.3,0.5,0.6,0.7,0.8,0.5],
+    [0.4,0.6,0.8,0.9,1.0,0.8,0.6],
+    [0.2,0.4,0.6,0.7,0.9,0.7,0.4],
+  ];
+  // flatten to 7 cols (activity per week day across groups)
+  const weekData = [0.55,0.72,0.81,0.90,0.95,0.68,0.42];
+  const rows = 8;
+  intensities.forEach(row => {
+    row.forEach(val => {
+      const cell = document.createElement('div');
+      cell.className = 'heatmap-cell';
+      const alpha = 0.1 + val * 0.6;
+      cell.style.background = `rgba(0,110,180,${alpha * 0.85})`;
+      container.appendChild(cell);
+    });
+  });
+}
+
+// ─── NETWORK GRAPH ─── (replaced with CSS/HTML nodes above)
+
+// ─── ADOPTION CHART ───
+function animateAdoptionChart() {
+  const points = [[0,100],[40,85],[80,68],[130,48],[180,30],[230,20],[280,14],[320,10]];
+  const line = document.getElementById('adoptionLine');
+  const area = document.getElementById('adoptionArea');
+  if(!line) return;
+  const ptStr = points.map(p=>`${p[0]},${p[1]}`).join(' ');
+  const areaStr = `0,110 ${ptStr} 320,110`;
+  line.setAttribute('points',ptStr);
+  if(area) area.setAttribute('points',areaStr);
+}
+
+// ─── COUNTER ANIMATION ───
+function animateCounter(el, target, suffix='') {
+  const start = 0;
+  const duration = 1500;
+  const startTime = performance.now();
+  function update(current) {
+    const elapsed = current - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const val = Math.floor(start + eased * (target - start));
+    el.textContent = val >= 1000 ? (val/1000).toFixed(1)+'k+' : val+'+';
+    if(progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+// ─── SCROLL ANIMATIONS ───
+const fadeEls = document.querySelectorAll('.fade-up');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) { entry.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+fadeEls.forEach(el => observer.observe(el));
+
+// Counter observer
+const counterEls = document.querySelectorAll('[data-count]');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting && !entry.target.dataset.animated) {
+      entry.target.dataset.animated = true;
+      animateCounter(entry.target, parseInt(entry.target.dataset.count));
+    }
+  });
+}, { threshold: 0.5 });
+counterEls.forEach(el => counterObserver.observe(el));
+
+// ─── INIT ───
+window.addEventListener('DOMContentLoaded', () => {
+  animateBars();
+  buildHeatmap();
+  buildFullFeed();
+  animateAdoptionChart();
+
+  // Simulate live feed updates
+  let feedIndex = 0;
+  setInterval(() => {
+    const feed = document.getElementById('full-activity-feed');
+    if(!feed) return;
+    const items = feed.querySelectorAll('.feed-item');
+    if(items.length > 0) {
+      const item = feedData[feedIndex % feedData.length];
+      const div = document.createElement('div');
+      div.className = 'feed-item';
+      div.innerHTML = `<div class="feed-icon ${item.cls}">${item.icon}</div><div><div class="feed-text">${item.text}</div><span class="feed-time">Just now</span></div>`;
+      feed.insertBefore(div, feed.firstChild);
+      if(feed.children.length > 6) feed.removeChild(feed.lastChild);
+    }
+    feedIndex++;
+  }, 8000);
+});
+</script>
+</body>
+</html>
